@@ -1,0 +1,35 @@
+<% layout('layout') %>
+  <form action="/" method="post" class="board-form">
+    <input type="text" name="title" class="input" placeholder="タイトル" required>
+    <button type="submit" class="submit">ボード作成</button>
+  </form>
+  <ul class="main-list">
+    <% boardList.forEach(function(boardItem) { %>
+      <li class="main-list__item">
+        <a href="/boards/<%= boardItem.board_id %>" class="board">
+          <p class="board__title">
+            <%= boardItem.title %>
+          </p>
+          <p class="board__date">
+            <%= boardItem.user_name %>
+              <%= boardItem.created_at %>
+          </p>
+          <div class="btn＿area">
+            <form action="/del" method="post" class="btn_form">
+              <input type="hidden" name="id" value="<%= boardItem.board_id %>">
+              <button type="submit" class="btn btn_del">DELETE</button>
+            </form>
+            <form action="/update" method="post" class="btn_form">
+              <input type="hidden" name="id" value="<%= boardItem.board_id %>">
+              <button type="submit" class="btn btn_update">UPDATE</button>
+            </form>
+          </div>
+        </a>
+      </li>
+      <% }); %>
+  </ul>
+  <% if (typeof user !=='undefined' ) { %>
+    <span class="login-user">
+      <%= user.user_name %>さんとしてログインしています
+    </span>
+    <% } %>

@@ -1,0 +1,12 @@
+<% layout('layout') %>
+<ul class="main-list">
+</ul>
+<form action="/" method="post" class="board-form">
+    <input type="hidden" name="id" value="<%= id %>">
+    <input type="hidden" name="update" value="update">
+    <input type="text" name="title" class="input" value="<%= title %>" required>
+    <button type="submit" class="submit">ボード更新</button>
+</form>
+<% if (typeof user !== 'undefined') { %>
+<span class="login-user"><%= user.user_name %>さんとしてログインしています</span>
+<% } %>

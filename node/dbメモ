@@ -1,0 +1,40 @@
+db名：bulletin_board
+
+□ db作成
+CREATE DATABASE bulletin_board;
+
+□ テーブル作成
+
+CREATE TABLE board (
+ board_id SERIAL NOT NULL,
+ title VARCHAR(255) NOT NULL,
+ created_at TIMESTAMP NOT NULL,
+ PRIMARY KEY (board_id)
+);
+
+CREATE TABLE messages (
+ messages_id SERIAL NOT NULL,
+ board_id INTEGER NOT NULL,
+ message TEXT NOT NULL,
+ created_at TIMESTAMP NOT NULL,
+ PRIMARY KEY (messages_id)
+);
+
+CREATE TABLE users (
+ user_id SERIAL NOT NULL,
+ user_name VARCHAR(255) NOT NULL,
+ email VARCHAR(255) NOT NULL,
+ password VARCHAR(255) NOT NULL,
+ created_at TIMESTAMP NOT NULL,
+ PRIMARY KEY (user_id)
+);
+
+□ カラム追加
+
+ALTER TABLE board ADD COLUMN user_id INTEGER NOT NULL;
+ALTER TABLE messages ADD COLUMN user_id INTEGER NOT NULL;
+
+
+□ テーブル削除
+DROP TABLE board;
+DROP TABLE messages;
